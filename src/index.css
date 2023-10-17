@@ -1,0 +1,13 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/inter.css);
+html {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-feature-settings: 'clig'off, 'liga'off;
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  line-height: normal;
+  color: #000;
+}

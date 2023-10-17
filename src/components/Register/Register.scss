@@ -1,0 +1,148 @@
+@import "../../utils/variables";
+
+.reg {
+  @include flexcenter;
+  width: 100%;
+  height: 100vh;
+  &__container {
+    margin: auto;
+    width: 396px;
+    position: relative;
+    background: #fff;
+    margin-top: 68px;
+  }
+  &__logo {
+    margin-bottom: 40px;
+  }
+  &__title {
+    margin-bottom: 40px;
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21px;
+  }
+  &__inputs {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border: none;
+  }
+  &__input {
+    width: 100%;
+    min-height: 17px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.21px;
+    color: #000000;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    padding: 0;
+    padding-bottom: 10px;
+    &:focus {
+      color: #212529;
+      background-color: #fff;
+      border-color: #bdbdbd;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+    }
+  }
+  &__input-error {
+    height: 20px;
+    color: #ffffff;
+    font-family: Inter, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    position: relative;
+    top: 6px;
+    &:last-of-type {
+      margin-bottom: 0px;
+    }
+  }
+  &__input-error_active {
+    color: #ff3055;
+  }
+  &__submit {
+    width: 396px;
+    height: 45px;
+    color: #fff;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    background: transparent;
+    border: none;
+    border-radius: 3px;
+    background: #3456f3;
+    margin-top: 132px;
+    margin-bottom: 16px;
+    &:hover {
+      @include forhover;
+      border-radius: 3px;
+      background: #3456f3;
+    }
+  }
+  &__signin {
+    text-decoration: none;
+    color: #3456f3;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    &:hover {
+      @include forhover;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .reg__container {
+    margin-top: 232px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .reg {
+    align-items: normal;
+    &__container {
+      margin: 0px;
+      display: flex;
+      flex-direction: column;
+      margin-top: 56px;
+      align-items: center;
+      width: 260px;
+    }
+    &__form {
+      width: 100%;
+    }
+    &__submit {
+      width: 260px;
+      margin-top: 220px;
+      font-size: 12px;
+    }
+    &__logo {
+      margin-bottom: 50px;
+    }
+    &__title {
+      margin-bottom: 80px;
+    }
+    &__input-error {
+      margin: 0px;
+    }
+    &__question {
+      font-size: 12px;
+    }
+    &__signin {
+      font-size: 12px;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@mixin forhover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+@mixin flexcenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

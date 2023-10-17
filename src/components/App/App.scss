@@ -1,0 +1,8 @@
+@import "../../utils/variables";
+
+.App {
+  @include flexcenter;
+  width: 100%;
+  flex-direction: column;
+  background-color: #fff;
+}

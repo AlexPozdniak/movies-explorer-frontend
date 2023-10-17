@@ -1,0 +1,138 @@
+@import "../../utils/variables";
+
+.promo {
+  width: 100%;
+  @include flexcenter;
+  background-color: #073042;
+  &__container {
+    display: flex;
+    max-width: 1280px;
+    justify-content: space-between;
+    width: 100%;
+    margin: 75px 70px;
+  }
+  &__info {
+    max-width: 640px;
+  }
+  &__span {
+    white-space: nowrap;
+  }
+  &__title {
+    margin: 0px;
+    margin-bottom: 36px;
+    color: #fff;
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Inter, sans-serif;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 58px;
+  }
+  &__subtitle {
+    margin-bottom: 146px;
+    max-width: 310px;
+    color: #fff;
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0.5;
+  }
+  &__link {
+    @include flexcenter;
+    width: 129px;
+    height: 36px;
+    color: #fff;
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    /* 133.333% */
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    &:hover {
+      @include forhover;
+    }
+  }
+  &__image {
+    max-width: 310px;
+    max-height: 304px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .promo {
+    &__container {
+      margin-top: 139px;
+      margin-bottom: 76px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    &__link {
+      margin: 0px;
+    }
+    &__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      order: 2;
+    }
+    &__title {
+      margin-top: 48px;
+      margin-bottom: 22px;
+      color: #fff;
+      text-align: center;
+      font-feature-settings: "clig" off, "liga" off;
+      font-family: Inter, sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 50px;
+    }
+    &__subtitle {
+      max-width: 267px;
+      text-align: center;
+      margin-bottom: 90px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .promo {
+    &__container {
+      margin: 70px 10px 30px;
+    }
+    &__link {
+      margin: 0px;
+    }
+    &__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    &__title {
+      margin-top: 44px;
+      color: #fff;
+      text-align: center;
+      font-family: Inter, sans-serif;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 38px;
+      letter-spacing: -1.2px;
+    }
+    &__subtitle {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    &__image {
+      max-width: 210.001px;
+      max-height: 206px;
+    }
+  }
+}

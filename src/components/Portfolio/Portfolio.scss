@@ -1,0 +1,285 @@
+@import "../../utils/variables";
+
+.portfolio {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  &__title {
+    margin: 0px;
+    padding-bottom: 23px;
+    display: flex;
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.88px;
+    border-bottom: 1px solid #000;
+  }
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 66px;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1280px;
+    justify-content: space-between;
+    width: 100%;
+    margin: 75px 70px;
+    margin-top: 107px;
+  }
+  &__information {
+    max-width: 640px;
+  }
+  &__span {
+    white-space: nowrap;
+  }
+  &__name {
+    margin: 0px;
+    color: #000;
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Inter, sans-serif;
+    font-size: 47px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 58px;
+  }
+  &__subtitle {
+    margin-top: 18px;
+    color: #000;
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Inter, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+  }
+  &__text {
+    max-width: 587px;
+    margin: 0px;
+    margin-top: 26px;
+    color: #000;
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+  }
+  &__link {
+    display: flex;
+    margin-top: 89px;
+    align-items: center;
+    width: 129px;
+    height: 36px;
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+    &:hover {
+      @include forhover;
+    }
+  }
+  &__image {
+    width: 270px;
+    height: 327px;
+    margin-left: 150px;
+  }
+  &__links {
+    display: flex;
+    flex-direction: column;
+    margin-top: 93px;
+  }
+  &__links-title {
+    margin-bottom: 50px;
+    color: #a0a0a0;
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Inter, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+  }
+  &__link-list {
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 9px;
+    padding-bottom: 19px;
+    border-bottom: 1px solid #e8e8e8;
+    &:hover {
+      @include forhover;
+    }
+  }
+  &__link-to {
+    text-decoration: none;
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: -1.2px;
+  }
+  &__img-link {
+    display: flex;
+    width: 29px;
+    height: 60px;
+    background: no-repeat;
+    background-position: center;
+    background-image: url(../../images/to.svg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio {
+    &__container {
+      margin-top: 91px;
+      margin-bottom: 76px;
+      margin-left: 50px;
+      margin-right: 50px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    &__name {
+      font-size: 40px;
+      line-height: 40px;
+      letter-spacing: -1.6px;
+    }
+    &__link {
+      margin-top: 77px;
+    }
+    &__information {
+      display: flex;
+      flex-direction: column;
+    }
+    &__title {
+      width: 100%;
+      color: #000;
+      font-size: 22px;
+      letter-spacing: -0.88px;
+    }
+    &__subtitle {
+      font-size: 12px;
+      line-height: 18px;
+      font-weight: 500;
+      margin-top: 16px;
+    }
+    &__image {
+      order: 1;
+      margin-left: 49px;
+      max-width: 255px;
+      max-height: 307px;
+    }
+    &__links {
+      width: 100%;
+      margin-top: 84px;
+    }
+    &__text {
+      color: #000;
+      font-feature-settings: "clig" off, "liga" off;
+      font-family: Inter, sans-serif;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px;
+      margin-top: 20px;
+      max-width: 363px;
+    }
+    &__link-to {
+      font-size: 28px;
+      letter-spacing: -1.12px;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .portfolio {
+    &__image {
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .portfolio {
+    &__container {
+      margin: 76px 14px 30px;
+    }
+    &__name {
+      font-size: 31px;
+    }
+    &__link {
+      margin: 0px;
+      margin-top: 30px;
+    }
+    &__links {
+      margin: 0px;
+      margin-top: 60px;
+    }
+    &__information {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 40px;
+    }
+    &__text {
+      margin-top: 20px;
+      font-size: 11px;
+      line-height: 16px;
+    }
+    &__title {
+      padding-bottom: 28px;
+      color: #000;
+      font-size: 18px;
+      letter-spacing: -0.72px;
+    }
+    &__subtitle {
+      margin: 0px;
+      text-align: center;
+      margin-top: 15px;
+      font-size: 11px;
+    }
+    &__image {
+      max-width: 292px;
+      max-height: 352px;
+      width: 293px;
+      height: 352px;
+    }
+    &__wrapper {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 60px;
+    }
+    &__image {
+      order: 0;
+    }
+    &__links-title {
+      margin-bottom: 40px;
+      font-size: 14px;
+    }
+    &__link-to {
+      font-size: 18px;
+      line-height: 28px;
+      letter-spacing: -0.72px;
+    }
+    &__img-link {
+      width: 18px;
+      height: 28px;
+      background-size: 12px;
+    }
+    &__link-list {
+      padding-bottom: 31px;
+    }
+  }
+}

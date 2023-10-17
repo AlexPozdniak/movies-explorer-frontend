@@ -1,0 +1,13 @@
+@import "../../utils/variables";
+
+.saved-movies {
+  width: 100%;
+  @include flexcenter;
+  margin-bottom: 68px;
+  &__container {
+    @include flexcenter;
+    flex-direction: column;
+    width: calc(100% - 140px);
+    max-width: 1280px;
+  }
+}

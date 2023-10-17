@@ -1,0 +1,99 @@
+@import "../../utils/variables";
+
+.weeks {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__wrapper {
+    width: 100%;
+    display: flex;
+  }
+
+  &__green-line {
+    @include flexcenter;
+    width: 285px;
+    height: 36px;
+    background: #2be080;
+    color: #000;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  &__gray-line {
+    @include flexcenter;
+    width: 100%;
+    height: 36px;
+    background: #f2f2f2;
+    color: #000;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  &__back {
+    @include flexcenter;
+    width: 285px;
+    height: 44px;
+    color: #a0a0a0;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px;
+  }
+
+  &__front {
+    @include flexcenter;
+    width: 100%;
+    height: 44px;
+    color: #a0a0a0;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .weeks {
+    &__green-line {
+      width: 177px;
+    }
+    &__back {
+      width: 176px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .weeks {
+    &__green-line {
+      font-size: 11px;
+      width: 155px;
+      height: 35px;
+    }
+    &__gray-line {
+      font-size: 11px;
+    }
+    &__back {
+      font-size: 11px;
+      width: 156px;
+      height: 36px;
+    }
+    &__front {
+      font-size: 11px;
+      height: 34px;
+    }
+  }
+}

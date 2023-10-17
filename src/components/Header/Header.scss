@@ -1,0 +1,134 @@
+@import "../../utils/variables";
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 74px;
+  background: #073042;
+  &_alter {
+    background: #ffffff;
+  }
+  &__container {
+    width: 100%;
+    max-width: 1280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 70px;
+  }
+  &__account {
+    @include flexcenter;
+    width: 100px;
+    height: 32px;
+    border-radius: 40px;
+    background: #2be080;
+    box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+    color: #000;
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 12px;
+    text-decoration: none;
+    &:hover {
+      @include forhover;
+    }
+    &_alter {
+      background-color: #fff;
+    }
+  }
+  &__account-wrapper {
+    @include flexcenter;
+    width: 26px;
+    height: 26px;
+    margin-left: 7px;
+    border-radius: 50%;
+    background: #fff;
+    &_alter {
+      background-color: #f9f9f9;
+    }
+  }
+  &__link {
+    @include forhover;
+  }
+  &__img {
+    &:hover {
+      @include forhover;
+    }
+  }
+  &__nav-menu {
+    display: flex;
+    align-items: center;
+  }
+  &__register {
+    margin-right: 30px;
+    color: #fff;
+    text-align: right;
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    text-decoration: none;
+  }
+  &__login {
+    @include flexcenter;
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    text-decoration: none;
+  }
+  &__account-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 32px;
+    border-radius: 3px;
+    background: #2be080;
+  }
+  &__burger-icon {
+    width: 40px;
+    height: 43px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    background-image: url(../../images/burger.svg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    @include flexcenter;
+    width: 100%;
+    height: 74px;
+    &__container {
+      margin: 0px 30px;
+    }
+    &__burger-icon {
+      background-image: url(../../images/burger-alter.svg);
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    &__container {
+      margin: 0px 14px;
+    }
+    &__account-btn {
+      width: 54px;
+      height: 26px;
+    }
+    &__register {
+      margin-right: 15px;
+      font-size: 10px;
+    }
+  }
+}

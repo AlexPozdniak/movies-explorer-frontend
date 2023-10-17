@@ -1,0 +1,131 @@
+@import "../../utils/variables";
+
+.about-project {
+  @include flexcenter;
+  flex-direction: column;
+  width: 100%;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1280px;
+    margin: 110px 70px;
+    margin-bottom: 98px;
+  }
+
+  &__title {
+    padding-bottom: 23px;
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.88px;
+    border-bottom: 1px solid #000;
+  }
+
+  &__subtitle {
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.8px;
+    margin-top: 64px;
+    margin-bottom: 26px;
+  }
+
+  &__texts {
+    display: flex;
+    margin-bottom: 105px;
+  }
+
+  &__article {
+    padding: 5px;
+    padding-left: 0;
+
+    &:last-of-type {
+      padding-left: 52px;
+    }
+  }
+
+  &__description {
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-project {
+    &__container {
+      margin: 90px 50px;
+      margin-bottom: 77px;
+    }
+
+    &__description {
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    &__article:last-of-type {
+      padding-left: 36px;
+    }
+
+    &__texts {
+      display: flex;
+      margin-bottom: 86px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .about-project {
+    &__container {
+      margin: 69px 18px;
+    }
+
+    &__title {
+      margin: 0;
+      margin-top: 2px;
+      padding-bottom: 28px;
+      font-size: 18px;
+    }
+
+    &__texts {
+      flex-direction: column;
+      margin-bottom: 60px;
+    }
+
+    &__article {
+      padding: 0;
+      &:last-of-type {
+        padding: 0;
+      }
+    }
+
+    &__subtitle {
+      margin: 0;
+      margin-top: 60px;
+      font-size: 18px;
+      letter-spacing: -0.72px;
+
+      &:last-of-type {
+        margin-top: 62px;
+        line-height: 20px;
+      }
+    }
+
+    &__description {
+      margin: 0;
+      margin-top: 16px;
+      font-size: 11px;
+      line-height: 16px;
+    }
+  }
+}

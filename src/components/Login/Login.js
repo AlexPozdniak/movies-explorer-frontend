@@ -3,7 +3,7 @@ import "./Login.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-import headerImg from "./../../images/logo.svg";
+import headerImage from "./../../images/logo.svg";
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -24,7 +24,7 @@ export const Login = () => {
     <main className={`login`}>
       <div className={`login__container`}>
         <Link className="login__link" to="/">
-          <img className="login__img" src={headerImg} alt="Логотип" />
+          <img className="login__img" src={headerImage} alt="Логотип" />
         </Link>
 
         <h1 className="login__main-title">Рады видеть!</h1>

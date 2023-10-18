@@ -99,7 +99,10 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    background-image: url(../../images/burger.svg);
+    background-image: url(../../images/burger-alter.svg);
+    &_white {
+      background-image: url(../../images/whiteburger.svg);
+    }
   }
 }
 
@@ -110,9 +113,6 @@
     height: 74px;
     &__container {
       margin: 0px 30px;
-    }
-    &__burger-icon {
-      background-image: url(../../images/burger-alter.svg);
     }
   }
 }

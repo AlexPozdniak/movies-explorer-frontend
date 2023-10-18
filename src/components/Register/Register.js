@@ -44,7 +44,7 @@ export const Register = () => {
               minLength="2"
               maxLength="40"
               onChange={handleName}
-              placeholder="Имя"
+              // placeholder="Имя"
               value={name || ""}
             />
             <span
@@ -64,7 +64,7 @@ export const Register = () => {
               minLength="2"
               maxLength="40"
               onChange={handleEmail}
-              placeholder="E-mail"
+              // placeholder="E-mail"
               value={email || ""}
             />
             <span
@@ -84,7 +84,7 @@ export const Register = () => {
               required
               minLength="2"
               maxLength="200"
-              placeholder="Пароль"
+              // placeholder="Пароль"
               onChange={handlePassword}
               value={password || ""}
             />

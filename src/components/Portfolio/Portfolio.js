@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 import useMediaQueries from "../../hooks/useResize.js";
 
 import vitaliy from "../../images/vitaliy.png";
+import to from "./../../images/to.svg";
 
 export const Portfolio = () => {
-  const { md, lg } = useMediaQueries();
-  if (lg) {
+  const large = useMediaQueries();
+  if (large) {
     return (
       <section className="portfolio">
         <div className="portfolio__container">
@@ -40,63 +41,38 @@ export const Portfolio = () => {
           <div className="portfolio__links">
             <h3 className="portfolio__links-title">Портфолио</h3>
             <ul className="portfolio__link-list">
-              <li>
+              <li className="portfolio__link-list-item">
                 <Link
                   className="portfolio__link-to"
                   to="https://github.com/AlexPozdniak/second-project"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Статичный сайт
+                  <p>Статичный сайт</p>
+                  <img src={to} className="portfolio__img-link" alt="стрелка" />
                 </Link>
               </li>
-              <li>
-                <Link
-                  className="portfolio__img-link"
-                  to="https://github.com/AlexPozdniak/first-project"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                ></Link>
-              </li>
-            </ul>
-            <ul className="portfolio__link-list">
-              <li>
+              <li className="portfolio__link-list-item">
                 <Link
                   className="portfolio__link-to"
                   to="https://github.com/AlexPozdniak/russian-travel"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Адаптивный сайт
+                  <p>Адаптивный сайт</p>
+                  <img src={to} className="portfolio__img-link" alt="стрелка" />
                 </Link>
               </li>
-              <li>
-                <Link
-                  className="portfolio__img-link"
-                  to="https://github.com/AlexPozdniak/second-project"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                ></Link>
-              </li>
-            </ul>
-            <ul className="portfolio__link-list">
-              <li>
+              <li className="portfolio__link-list-item">
                 <Link
                   className="portfolio__link-to"
-                  to="https://github.com/AlexPozdniak/first-project"
+                  to="https://github.com/AlexPozdniak/react-mesto-api-full-gha"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Одностраничное приложение
+                  <p>Одностраничное приложение</p>
+                  <img src={to} className="portfolio__img-link" alt="стрелка" />
                 </Link>
-              </li>
-              <li>
-                <Link
-                  className="portfolio__img-link"
-                  to="https://github.com/AlexPozdniak/russian-travel"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                ></Link>
               </li>
             </ul>
           </div>
@@ -135,65 +111,40 @@ export const Portfolio = () => {
         <div className="portfolio__links">
           <h3 className="portfolio__links-title">Портфолио</h3>
           <ul className="portfolio__link-list">
-            <li>
-              <Link
-                className="portfolio__link-to"
-                to="https://github.com/AlexPozdniak/second-project"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Статичный сайт
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="portfolio__img-link"
-                to="https://github.com/AlexPozdniak/first-project"
-                target="_blank"
-                rel="noopener noreferrer"
-              ></Link>
-            </li>
-          </ul>
-          <ul className="portfolio__link-list">
-            <li>
-              <Link
-                className="portfolio__link-to"
-                to="https://github.com/AlexPozdniak/russian-travel"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Адаптивный сайт
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="portfolio__img-link"
-                to="https://github.com/AlexPozdniak/second-project"
-                target="_blank"
-                rel="noopener noreferrer"
-              ></Link>
-            </li>
-          </ul>
-          <ul className="portfolio__link-list">
-            <li>
-              <Link
-                className="portfolio__link-to"
-                to="https://github.com/AlexPozdniak/first-project"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Одностраничное приложение
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="portfolio__img-link"
-                to="https://github.com/AlexPozdniak/russian-travel"
-                target="_blank"
-                rel="noopener noreferrer"
-              ></Link>
-            </li>
-          </ul>
+              <li className="portfolio__link-list-item">
+                <Link
+                  className="portfolio__link-to"
+                  to="https://github.com/AlexPozdniak/second-project"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <p>Статичный сайт</p>
+                  <img src={to} className="portfolio__img-link" alt="стрелка" />
+                </Link>
+              </li>
+              <li className="portfolio__link-list-item">
+                <Link
+                  className="portfolio__link-to"
+                  to="https://github.com/AlexPozdniak/russian-travel"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <p>Адаптивный сайт</p>
+                  <img src={to} className="portfolio__img-link" alt="стрелка" />
+                </Link>
+              </li>
+              <li className="portfolio__link-list-item">
+                <Link
+                  className="portfolio__link-to"
+                  to="https://github.com/AlexPozdniak/react-mesto-api-full-gha"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <p>Одностраничное приложение</p>
+                  <img src={to} className="portfolio__img-link" alt="стрелка" />
+                </Link>
+              </li>
+            </ul>
         </div>
       </div>
     </section>

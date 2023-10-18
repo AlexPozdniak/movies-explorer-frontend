@@ -2,9 +2,7 @@
 
 .portfolio {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flexcenter;
   background-color: #fff;
   &__title {
     margin: 0px;
@@ -111,15 +109,24 @@
   &__link-list {
     text-decoration: none;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 9px;
-    padding-bottom: 19px;
-    border-bottom: 1px solid #e8e8e8;
+    // margin-bottom: 9px;
+    // padding-bottom: 19px;
+    // border-bottom: 1px solid #e8e8e8;
     &:hover {
       @include forhover;
     }
   }
+  &__link-list-item {
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: space-between;
+  }
   &__link-to {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     text-decoration: none;
     color: #000;
     font-family: Inter, sans-serif;
@@ -128,14 +135,18 @@
     font-weight: 400;
     line-height: 50px;
     letter-spacing: -1.2px;
+    margin-bottom: 21px;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 16px;
   }
   &__img-link {
-    display: flex;
-    width: 29px;
-    height: 60px;
-    background: no-repeat;
-    background-position: center;
-    background-image: url(../../images/to.svg);
+    margin-right: 4px;
+    // display: flex;
+    // width: 29px;
+    // height: 60px;
+    // background: no-repeat;
+    // background-position: center;
+    // background-image: url(../../images/to.svg);
   }
 }
 
@@ -270,16 +281,16 @@
     }
     &__link-to {
       font-size: 18px;
-      line-height: 28px;
+      line-height: 31px;
       letter-spacing: -0.72px;
     }
     &__img-link {
-      width: 18px;
+      width: 14px;
       height: 28px;
       background-size: 12px;
     }
     &__link-list {
-      padding-bottom: 31px;
+      padding-bottom: 0px;
     }
   }
 }

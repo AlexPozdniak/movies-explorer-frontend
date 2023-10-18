@@ -69,7 +69,7 @@ const Header = ({ isLoggedIn, onOpenBurger }) => {
           <>
             <button
               type="button"
-              className="header__burger-icon"
+              className={`header__burger-icon ${location.pathname === "/" && "header__burger-icon_white"}`}
               onClick={onOpenBurger}
             ></button>
           </>

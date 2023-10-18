@@ -7,17 +7,17 @@ export const Navigation = () => {
     <nav className="navigation">
       <Link
         className={`navigation__link ${
-          location.pathname !== "/" ? "navigation__link_colored" : ""
-        } ${location.pathname === "/movies" ? "navigation__link_active" : ""}`}
+          location.pathname !== "/" && "navigation__link_colored"
+        } ${location.pathname === "/movies" && "navigation__link_active"}`}
         to="/movies"
       >
         Фильмы
       </Link>
       <Link
         className={`navigation__link ${
-          location.pathname !== "/" ? "navigation__link_colored" : ""
+          location.pathname !== "/" && "navigation__link_colored"
         } ${
-          location.pathname === "/saved-movies" ? "navigation__link_active" : ""
+          location.pathname === "/saved-movies" && "navigation__link_active"
         }`}
         to="/saved-movies"
       >

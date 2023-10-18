@@ -41,7 +41,7 @@ export const Login = () => {
               minLength="2"
               maxLength="40"
               onChange={handleEmail}
-              placeholder="E-mail"
+              // placeholder="E-mail"
               value={email || ""}
             />
             <span
@@ -62,7 +62,7 @@ export const Login = () => {
               minLength="2"
               maxLength="200"
               onChange={handlePassword}
-              placeholder="Пароль"
+              // placeholder="Пароль"
               value={password || ""}
             />
             <span

@@ -18,11 +18,11 @@
       @include forhover;
     }
 
-    &__colored {
+    &_colored {
       color: #000;
     }
 
-    &__active {
+    &_active {
       border-bottom: 1px solid #000000;
       font-weight: 900;
     }

@@ -37,7 +37,7 @@
     margin-bottom: 26px;
   }
 
-  &__texts {
+  &__articles {
     display: flex;
     margin-bottom: 105px;
   }
@@ -45,6 +45,12 @@
   &__article {
     padding: 5px;
     padding-left: 0;
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
 
     &:last-of-type {
       padding-left: 52px;
@@ -77,7 +83,7 @@
       padding-left: 36px;
     }
 
-    &__texts {
+    &__articles {
       display: flex;
       margin-bottom: 86px;
     }
@@ -97,7 +103,7 @@
       font-size: 18px;
     }
 
-    &__texts {
+    &__articles {
       flex-direction: column;
       margin-bottom: 60px;
     }
@@ -129,3 +135,4 @@
     }
   }
 }
+

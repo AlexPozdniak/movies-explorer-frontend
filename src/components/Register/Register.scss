@@ -60,13 +60,14 @@
     line-height: normal;
     position: relative;
     top: 6px;
+    color: #ff3055;
     &:last-of-type {
       margin-bottom: 0px;
     }
   }
-  &__input-error_active {
-    color: #ff3055;
-  }
+  // &__input-error_active {
+  //   color: #ff3055;
+  // }
   &__submit {
     width: 396px;
     height: 45px;
@@ -101,6 +102,9 @@
     &:hover {
       @include forhover;
     }
+  }
+  &__subtitle {
+    margin-top: 6px;
   }
 }
 

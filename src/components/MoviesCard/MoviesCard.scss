@@ -38,10 +38,14 @@
     height: 24px;
     background: transparent;
     border: none;
+    background-image: url(../../images/like.svg);
     @include forhover;
   }
   &__like-button_active {
-    background-image: url(../../images/like.svg);
+    background-image: url(../../images/like-active.svg);
+  }
+  &__like-button_close {
+    background-image: url(../../images/delete.svg);
   }
   &__duration {
     margin-top: 6px;

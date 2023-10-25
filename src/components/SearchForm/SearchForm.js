@@ -1,19 +1,38 @@
 import "./SearchForm.scss";
+
 import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 
-export const SearchForm = () => {
+import { useState } from "react";
+
+export const SearchForm = ({ onSearch, isShorts, setIsShorts, errorText, error }) => {
+  const [query, setQuery] = useState(localStorage.getItem("query") || "");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch(query);
+  };
+
   return (
     <section className="search">
-      <form class="search__form">
+      <form className="search__form" onSubmit={handleSubmit}>
         <div className="search__container">
-          <label class="search__label">
-            <input class="search__input" placeholder="Фильм" required></input>
+          <label className="search__label">
+            <input
+              onChange={(e) => {
+                setQuery(e.target.value);
+                localStorage.setItem("query", e.target.value);
+              }}
+              className="search__input"
+              placeholder="Фильм"
+              required
+              value={query}
+            ></input>
           </label>
-          <button type="submit" class="search__button">
+          <button type="submit" className="search__button">
             Найти
           </button>
         </div>
-        <FilterCheckbox />
+        {error ? <span className="search__error">{errorText}</span> : ""}
+        <FilterCheckbox isShorts={isShorts} setIsShorts={setIsShorts}/>
       </form>
     </section>
   );

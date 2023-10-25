@@ -1,30 +1,20 @@
 import "./Register.scss";
 
-import { useState } from "react";
 import { Link } from "react-router-dom";
+
+import { useForm } from "../../hooks/useForm";
 
 import headerImg from "./../../images/logo.svg";
 
-export const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [nameErr, setNameErr] = useState(true);
-  const [emailErr, setEmailErr] = useState(true);
-  const [passwordErr, setPasswordErr] = useState(true);
+export const Register = ({ onRegister }) => {
+  const { values, handleChange, errors, isValid } = useForm({});
 
-  const handlePassword = (e) => {
-    setPasswordErr(e.target.validity.valid);
-    setPassword(e.target.value);
-  };
-  const handleEmail = (e) => {
-    setEmailErr(e.target.validity.valid);
-    setEmail(e.target.value);
-  };
-  const handleName = (e) => {
-    setNameErr(e.target.validity.valid);
-    setName(e.target.value);
-  };
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    if (isValid) {
+      onRegister(values);
+    }
+  }
 
   return (
     <main className={`reg`}>
@@ -33,70 +23,57 @@ export const Register = () => {
           <img className="login__logo" src={headerImg} alt="Логотип" />
         </Link>
         <h1 className="reg__title">Добро пожаловать!</h1>
-        <form className="reg__form" name={"form"}>
+        <form className="reg__form" name={"form"} onSubmit={handleSubmit}>
           <fieldset className="reg__inputs">
             <label className="reg__subtitle">Имя</label>
             <input
-              className={`reg__input ${!nameErr && "reg__input-error_active"}`}
+              className={`reg__input`}
               name="name"
               type="text"
               required
               minLength="2"
               maxLength="40"
-              onChange={handleName}
-              // placeholder="Имя"
-              value={name || ""}
+              onChange={handleChange}
             />
             <span
-              className={`reg__input-error ${
-                !nameErr && "reg__input-error_active"
-              }`}
+              className={`reg__input-error`}
             >
-              Что-то пошло не так...
+              {errors["name"]}
             </span>
 
             <label className="reg__subtitle">E-mail</label>
             <input
-              className={`reg__input ${!emailErr && "reg__input-error_active"}`}
+              className={`reg__input`}
               name="email"
               type="email"
               required
               minLength="2"
               maxLength="40"
-              onChange={handleEmail}
-              // placeholder="E-mail"
-              value={email || ""}
+              onChange={handleChange}
+              pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
             />
             <span
-              className={`reg__input-error ${
-                !email && "reg__input-error_active"
-              }`}
+              className={`reg__input-error`}
             >
-              Что-то пошло не так...
+              {errors["email"]}
             </span>
             <label className="reg__subtitle">Пароль</label>
             <input
-              className={`reg__input ${
-                !passwordErr && "reg__input-error_active"
-              }`}
+              className={`reg__input`}
               name="password"
               type="password"
               required
               minLength="2"
               maxLength="200"
-              // placeholder="Пароль"
-              onChange={handlePassword}
-              value={password || ""}
+              onChange={handleChange}
             />
             <span
-              className={`reg__input-error ${
-                !password && "reg__input-error_active"
-              }`}
+              className={`reg__input-error`}
             >
-              Что-то пошло не так...
+              {errors["password"]}
             </span>
           </fieldset>
-          <button className={`reg__submit`} type="submit">
+          <button className={`reg__submit`} type="submit" disabled={!isValid}>
             Зарегистрироваться
           </button>
           <p className="reg__question">

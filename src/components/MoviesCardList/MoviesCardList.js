@@ -68,7 +68,23 @@ export const MoviesCardList = ({ movies, shortMovies, isShorts, onLike, onDislik
   };
 
   function isItemInArray(item) {
-    return savedMovies.some((arrItem) => arrItem.id === item.id);
+    if (location.pathname === "/saved-movies") {
+      return savedMovies.some((arrItem) => {
+        // console.log('SM',arrItem.movieId === item.movieId, arrItem.movieId, item.movieId)
+        return arrItem.movieId === item.movieId
+      })
+    } else {
+      return savedMovies.some((arrItem) => {
+        // console.log('M',arrItem.movieId === item.id, arrItem.movieId, item.id)
+        return arrItem.movieId === item.id
+      })
+    }
+  }
+  function getSavedMovieId(savedMovies, id) {
+    // console.log(id, 'kssssssssssssssssssssss')
+    const savedMovie = savedMovies.find(item => item.movieId === id);
+    // console.log(savedMovie,'lllllllllllllllllllllllllll')
+    return savedMovie ? savedMovie._id : null;
   }
 
   function getCardsPerRow() {
@@ -92,7 +108,7 @@ export const MoviesCardList = ({ movies, shortMovies, isShorts, onLike, onDislik
             .slice(0, cardsCount)
             .map((movie, idx, arr) => (
               <MoviesCard
-                key={`${movie.id + Math.random()} `}
+                key={movie.id || Math.random()}
                 url={location.pathname === "/saved-movies" ? movie.image : `https://api.nomoreparties.co/${movie.image.url}`}
                 title={movie.nameRU}
                 duration={movie.duration}
@@ -101,13 +117,14 @@ export const MoviesCardList = ({ movies, shortMovies, isShorts, onLike, onDislik
                 onLike={onLike}
                 onDislike={onDislike}
                 movie={movie}
+                _id={getSavedMovieId(savedMovies, movie.id)}
               />
             ))}
          {isShorts && shortMovies
             .slice(0, cardsCount)
             .map((movie, idx, arr) => (
               <MoviesCard
-                key={movie.id}
+                key={movie.id || Math.random()}
                 url={`https://api.nomoreparties.co/${movie.image.url}`}
                 title={movie.nameRU}
                 duration={movie.duration}
@@ -116,6 +133,7 @@ export const MoviesCardList = ({ movies, shortMovies, isShorts, onLike, onDislik
                 onLike={onLike}
                 onDislike={onDislike}
                 movie={movie}
+                _id={getSavedMovieId(savedMovies, movie.id)}
               />
             ))}
       </ul>

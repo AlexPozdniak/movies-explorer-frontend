@@ -20,11 +20,11 @@ export const SavedMovies = ({ movies, shortMovies, savedMovies, onDislike, onLik
   );
   const location = useLocation();
 
-  console.log(savedMovies, 'savedMovies on savedMovies')
-  console.log(movies, 'movies on savedMovies')
-  console.log(shortMovies, 'shortMovies on savedMovies')
-  console.log(filteredMovies)
-  console.log(filteredShorts)
+  // console.log(savedMovies, 'savedMovies on savedMovies')
+  // console.log(movies, 'movies on savedMovies')
+  // console.log(shortMovies, 'shortMovies on savedMovies')
+  // console.log(filteredMovies)
+  // console.log(filteredShorts)
   useEffect(()=> {
     if (localStorage.getItem("query") || "") {
       if (isShorts) {

@@ -2,15 +2,21 @@ import "./MoviesCard.scss";
 
 import { useLocation } from "react-router-dom";
 
-export const MoviesCard = ({ url, title, duration, trailerLink, isLiked, onLike, onDislike, movie }) => {
-  console.log(movie)
-  console.log(url)
+export const MoviesCard = ({ url, title, duration, trailerLink, isLiked, onLike, onDislike, movie, _id }) => {
+  // console.log(movie)
+  // console.log(url)
+  // console.log(_id)
   const location = useLocation();
   const handleLikeClick = () => {
     if (isLiked) {
-      movie.movieId = movie.id
-      console.log(movie, 'this card was disliked')
-      onDislike(movie);
+      if (location.pathname === '/movies') {
+        onDislike({_id});
+      } else {
+        movie.movieId = movie.id
+        console.log(movie, 'this card was disliked')
+        onDislike(movie);
+      }
+
 
     } else {
       

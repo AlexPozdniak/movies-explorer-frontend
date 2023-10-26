@@ -21,7 +21,7 @@ class MainApi {
     }).then(this._checkResponse);
   }
 
-  changeUserInfo(data) {
+  updateUser(data) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: {

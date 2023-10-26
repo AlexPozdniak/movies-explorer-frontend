@@ -1,12 +1,10 @@
 import { useState, useCallback } from "react";
 
-export const EMAIL_PATTERN = "[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+\\.[a-z]{2,}";
-
 //Валидация
 export function useForm(startInvalid) {
   const [values, setValues] = useState(startInvalid);
   const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(true);
 
   const handleChange = (evt) => {
     const target = evt.target;

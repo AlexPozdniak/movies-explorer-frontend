@@ -130,9 +130,20 @@ const App = () => {
   }
 
   const removeFavorite = (movie) => {
+    console.log(movie)
     mainApi.removeMovie(movie._id)
       .then((res) => {
         setSavedMovies(savedMovies.filter((m) => m._id !== movie._id));
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  const updateUser = (user) => {
+    mainApi.updateUser(user)
+      .then((res) => {
+        setCurrentUser(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -194,7 +205,7 @@ const App = () => {
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn} redirect={"/signin"}>
                 <Header isLoggedIn={isLoggedIn} onOpenBurger={onOpenBurger} />
-                <Profile onLogout={logout} />
+                <Profile onLogout={logout} onUpdateUser={updateUser}/>
               </ProtectedRoute>
             }
           ></Route>

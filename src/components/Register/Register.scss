@@ -87,7 +87,10 @@
     &:hover {
       @include forhover;
       border-radius: 3px;
-      background: #3456f3;
+      // background: #3456f3;
+    }
+    &-btn_disabled {
+      background: #a0a0a0;
     }
   }
   &__signin {

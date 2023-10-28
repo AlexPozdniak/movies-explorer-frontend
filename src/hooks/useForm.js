@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 export function useForm(startInvalid) {
   const [values, setValues] = useState(startInvalid);
   const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(true);
+  const [isValid, setIsValid] = useState(false);
 
   const handleChange = (evt) => {
     const target = evt.target;

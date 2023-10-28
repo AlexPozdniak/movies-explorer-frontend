@@ -1,8 +1,9 @@
 import "./EmptyPage.scss";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const EmptyPage = () => {
+  const navigate = useNavigate();
   return (
     <main className="empty">
       <div className="empty__container">
@@ -10,7 +11,7 @@ export const EmptyPage = () => {
         <h2 className="empty__subtitle">Страница не найдена</h2>
       </div>
 
-      <Link className="empty__link" to="/">
+      <Link className="empty__link" onClick={() => navigate(-1)}>
         Назад
       </Link>
     </main>

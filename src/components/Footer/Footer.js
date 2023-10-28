@@ -24,7 +24,7 @@ export const Footer = () => {
               className="footer__link"
               target="_blank"
               rel="noopener noreferrer"
-              to="https://github.com/davidlovepie"
+              to="https://github.com/AlexPozdniak"
             >
               Github
             </Link>

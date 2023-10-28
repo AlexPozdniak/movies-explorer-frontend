@@ -1,4 +1,4 @@
-import { useMemo,useState,useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 function useQuery(query) {
   const mediaQuery = useMemo(() => window.matchMedia(query), [query]);
@@ -17,7 +17,7 @@ function useQuery(query) {
 function useResize() {
   const large = useQuery("(min-width: 769px)");
 
-  return large; ;
+  return large;
 }
 
 export default useResize;

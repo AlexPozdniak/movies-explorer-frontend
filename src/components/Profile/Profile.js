@@ -5,16 +5,16 @@ import { useContext, useEffect, useState } from "react";
 
 import { useForm } from "../../hooks/useForm";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { EMAIL_REG } from "../../utils/constants";
 
-export const Profile = ({ onLogout, onUpdateUser }) => {
-  // const [nameError, setNameError] = useState(true);
+export const Profile = ({ onLogout, onUpdateUser, isLoading }) => {
   const [isEditing, setIsEditing] = useState(false);
-  // const [emailError, setEmailError] = useState(true);
   const user = useContext(CurrentUserContext);
-  const { values, handleChange, errors, isValid, clearForm } = useForm({
+  const { values, handleChange, errors, isValid } = useForm({
     name: user.name,
     email: user.email,
   });
+  const [isDisabled, setIsDisabled] = useState(true);
   console.log(values);
   console.log(errors);
 
@@ -30,10 +30,22 @@ export const Profile = ({ onLogout, onUpdateUser }) => {
     const name = values.name || user.name;
     const email = values.email || user.email;
     onUpdateUser({ name, email });
-    console.log({ name: values.name, email: values.email })
+    console.log({ name: values.name, email: values.email });
     setIsEditing(false);
-    // clearForm();
   }
+
+  useEffect(() => {
+    if (
+      values.name &&
+      values.email &&
+      (user.name !== values.name || user.email !== values.email)
+    ) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [values, user]);
+
   return (
     <main className={`profile`}>
       <section className={`profile__container`}>
@@ -44,7 +56,10 @@ export const Profile = ({ onLogout, onUpdateUser }) => {
               <label className="profile__input-name">Имя</label>
               <input
                 className={`profile__input ${
-                  !isValid && "profile__input-error_active"
+                  !isValid &&
+                  values["name"] &&
+                  isEditing &&
+                  "profile__input-error_active"
                 }`}
                 name="name"
                 type="text"
@@ -60,7 +75,10 @@ export const Profile = ({ onLogout, onUpdateUser }) => {
               <label className="profile__input-name">E-mail</label>
               <input
                 className={`profile__input ${
-                  !isValid && "profile__input-error_active"
+                  !isValid &&
+                  values["email"] &&
+                  isEditing &&
+                  "profile__input-error_active"
                 }`}
                 name="email"
                 type="email"
@@ -69,7 +87,7 @@ export const Profile = ({ onLogout, onUpdateUser }) => {
                 maxLength="40"
                 onChange={handleChange}
                 value={isEditing ? values["email"] : email}
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                pattern={EMAIL_REG}
                 disabled={!isEditing}
               />
             </div>
@@ -78,14 +96,20 @@ export const Profile = ({ onLogout, onUpdateUser }) => {
             {isEditing && (
               <>
                 <button
-                  className={`profile__submit`}
+                  className={`profile__submit ${
+                    !isValid || isDisabled ? "profile__submit_disabled" : ""
+                  }`}
                   type="submit"
-                  disabled={!isValid}
+                  disabled={isLoading ? true : !isValid || isDisabled}
                 >
                   Сохранить
                 </button>
-                <span className="profile__input-error profile__input-error_active-bottom">{errors.name}</span>
-                <span className="profile__input-error profile__input-error_active-bottom">{errors.email}</span>
+                <span className="profile__input-error profile__input-error_active-bottom">
+                  {errors.name}
+                </span>
+                <span className="profile__input-error profile__input-error_active-bottom">
+                  {errors.email}
+                </span>
               </>
             )}
             {!isEditing && (

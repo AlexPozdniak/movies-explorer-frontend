@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 
 import headerImg from "./../../images/logo.svg";
+import { EMAIL_REG } from "../../utils/constants";
 
-export const Register = ({ onRegister }) => {
+export const Register = ({ onRegister, isLoading }) => {
   const { values, handleChange, errors, isValid } = useForm({});
 
   function handleSubmit(evt) {
@@ -50,7 +51,7 @@ export const Register = ({ onRegister }) => {
               minLength="2"
               maxLength="40"
               onChange={handleChange}
-              pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+              pattern={EMAIL_REG}
             />
             <span
               className={`reg__input-error`}
@@ -73,7 +74,7 @@ export const Register = ({ onRegister }) => {
               {errors["password"]}
             </span>
           </fieldset>
-          <button className={`reg__submit`} type="submit" disabled={!isValid}>
+          <button className={`reg__submit ${!isValid && "reg__submit-btn_disabled"}`}  type="submit" disabled={isLoading ? true : !isValid}>
             Зарегистрироваться
           </button>
           <p className="reg__question">

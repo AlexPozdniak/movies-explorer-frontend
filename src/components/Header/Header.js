@@ -48,11 +48,9 @@ const Header = ({ isLoggedIn, onOpenBurger }) => {
               <Link className="header__register" to="/signup">
                 Регистрация
               </Link>
-              <div className="header__account-btn">
-                <Link className="header__login" to="/signin">
-                  Войти
-                </Link>
-              </div>
+              <Link className="header__account-btn" to="/signin">
+                <div className="header__login">Войти</div>
+              </Link>
             </nav>
           )}
         </div>
@@ -69,7 +67,9 @@ const Header = ({ isLoggedIn, onOpenBurger }) => {
           <>
             <button
               type="button"
-              className={`header__burger-icon ${location.pathname === "/" && "header__burger-icon_white"}`}
+              className={`header__burger-icon ${
+                location.pathname === "/" && "header__burger-icon_white"
+              }`}
               onClick={onOpenBurger}
             ></button>
           </>
@@ -78,11 +78,9 @@ const Header = ({ isLoggedIn, onOpenBurger }) => {
             <Link className="header__register" to="/signup">
               Регистрация
             </Link>
-            <div className="header__account-btn">
-              <Link className="header__login" to="/signin">
-                Войти
-              </Link>
-            </div>
+            <Link className="header__account-btn" to="/signin">
+              <div className="header__login">Войти</div>
+            </Link>
           </div>
         )}
       </div>

@@ -56,9 +56,6 @@
       outline: 0;
       box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25), 0 0 0 0.25rem #2be080;
     }
-    // &_errror-active {
-    //   color: #ff3055;
-    // }
   }
   &__input-error {
     height: 20px;
@@ -94,7 +91,9 @@
     &:hover {
       @include forhover;
       border-radius: 3px;
-      background: #3456f3;
+    }
+    &_disabled {
+      background: #a0a0a0;
     }
   }
   &__text {

@@ -2,9 +2,17 @@ import "./Movies.scss";
 
 import { MoviesCardList } from "../MoviesCardList/MoviesCardList";
 import { SearchForm } from "../SearchForm/SearchForm";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export const Movies = ({ movies, shortMovies, onLike, onDislike, savedMovies }) => {
+import { ERROR_MSG_NOT_FOUND, ERROR_MSG_KEY_WORD } from "../../utils/constants";
+
+export const Movies = ({
+  movies,
+  shortMovies,
+  onLike,
+  onDislike,
+  savedMovies,
+}) => {
   const [filteredMovies, setFilteredMovies] = useState(
     JSON.parse(localStorage.getItem("filteredMovies")) || []
   );
@@ -13,14 +21,10 @@ export const Movies = ({ movies, shortMovies, onLike, onDislike, savedMovies }) 
   );
   const [error, setError] = useState(false);
   const [errorText, setErrorText] = useState("");
-  // const [shortMovies, setShortMovies] = useState(getShorts(movies));
   const [isShorts, setIsShorts] = useState(
     localStorage.getItem("checked") === "true" ? true : false
   );
 
-  function getShorts(movies) {
-    return movies.filter((movie) => movie.duration < 45);
-  }
   function filterMoviesByQuerry(movies, query) {
     if (!query) {
       return movies;
@@ -33,10 +37,10 @@ export const Movies = ({ movies, shortMovies, onLike, onDislike, savedMovies }) 
 
     if (filteredMovies.length === 0) {
       setError(true);
-      setErrorText("Ничего не найдено");
+      setErrorText(ERROR_MSG_NOT_FOUND);
     } else if (query.length === 0) {
       setError(true);
-      setErrorText("Нужно ввести ключевое слово");
+      setErrorText(ERROR_MSG_KEY_WORD);
     } else {
       setError(false);
     }

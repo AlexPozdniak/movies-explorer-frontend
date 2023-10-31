@@ -53,7 +53,8 @@ const App = () => {
         setMovies(moviesResponse);
         setSavedMovies(savedMoviesResponse.data);
       })
-      .catch((error) => {
+      .catch((err) => {
+        console.log(err);
         setIsSuccessful(false);
         setIsInfoPopupOpen(true);
       })
@@ -93,7 +94,8 @@ const App = () => {
         setIsSuccessful(true);
         navigate("/signin");
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         setIsSuccessful(false);
       })
       .finally(() => {
@@ -115,7 +117,8 @@ const App = () => {
           }
           return res;
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err);
           setIsLoading(false);
           setIsInfoPopupOpen(true);
         })
@@ -126,42 +129,52 @@ const App = () => {
   };
 
   const makeFavorite = (movie) => {
+    setIsLoading(true);
     mainApi
       .saveMovie(movie)
       .then((res) => {
         setSavedMovies([res.data, ...savedMovies]);
       })
-      .catch(() => {
-        setIsLoading(false);
+      .catch((err) => {
+        console.log(err);
         setIsInfoPopupOpen(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
   const removeFavorite = (movie) => {
-    console.log(movie);
+    setIsLoading(true);
     mainApi
       .removeMovie(movie._id)
       .then(() => {
         setSavedMovies(savedMovies.filter((m) => m._id !== movie._id));
       })
-      .catch(() => {
-        setIsLoading(false);
+      .catch((err) => {
+        console.log(err);
         setIsInfoPopupOpen(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
   const updateUser = (user) => {
+    setIsLoading(true);
     mainApi
       .updateUser(user)
       .then((res) => {
         setCurrentUser(res.data);
         setIsSuccessful(true);
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         setIsSuccessful(false);
       })
       .finally(() => {
         setIsInfoPopupOpen(true);
+        setIsLoading(false);
       });
   };
 
@@ -251,7 +264,7 @@ const App = () => {
           ></Route>
           <Route
             path="/signin"
-            element={<Login onLogin={login} isLoading={isLoading} />}
+            element={<Login onLogin={login} isLoading={isLoading} isLoggedIn={isLoggedIn}/>}
           ></Route>
           <Route path="*" element={<EmptyPage />}></Route>
         </Routes>

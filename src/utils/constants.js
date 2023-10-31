@@ -4,3 +4,4 @@ export const ERROR_MSG = "Что-то пошло не так! Попробуйт
 export const ERROR_MSG_NOT_FOUND = "Ничего не найдено";
 export const ERROR_MSG_KEY_WORD = "Нужно ввести ключевое слово";
 export const API_URL = "https://api.nomoreparties.co/";
+export const MAIN_API_URL = "https://api.alexpozdniak.nomoredomainsrocks.ru";

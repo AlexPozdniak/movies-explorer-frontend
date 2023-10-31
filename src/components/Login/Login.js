@@ -1,14 +1,16 @@
 import "./Login.scss";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useForm } from "../../hooks/useForm";
 import { EMAIL_REG } from "../../utils/constants";
 
 import headerImage from "./../../images/logo.svg";
+import { useEffect } from "react";
 
-export const Login = ({ onLogin, isLoading }) => {
+export const Login = ({ onLogin, isLoading, isLoggedIn }) => {
   const { values, handleChange, errors, isValid } = useForm({});
+  const navigate = useNavigate();
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -16,6 +18,12 @@ export const Login = ({ onLogin, isLoading }) => {
       onLogin(values);
     }
   }
+
+  useEffect(  () => {
+    if (isLoggedIn) {
+      navigate("/", { replace: true });
+    }
+  })
 
   return (
     <main className={`login`}>
@@ -57,7 +65,7 @@ export const Login = ({ onLogin, isLoading }) => {
           <button
             className={`login__submit-btn ${
               !isValid && "login__submit-btn_disabled"
-            }`}
+            } ${isLoading && "login__submit-btn_disabled"}`}
             type="submit"
             disabled={isLoading ? true : !isValid}
           >

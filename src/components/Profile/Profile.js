@@ -15,10 +15,7 @@ export const Profile = ({ onLogout, onUpdateUser, isLoading }) => {
     email: user.email,
   });
   const [isDisabled, setIsDisabled] = useState(true);
-  console.log(values);
-  console.log(errors);
-
-  console.log(user);
+  console.log(isLoading)
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   useEffect(() => {
@@ -30,14 +27,13 @@ export const Profile = ({ onLogout, onUpdateUser, isLoading }) => {
     const name = values.name || user.name;
     const email = values.email || user.email;
     onUpdateUser({ name, email });
-    console.log({ name: values.name, email: values.email });
     setIsEditing(false);
   }
 
   useEffect(() => {
     if (
-      values.name &&
-      values.email &&
+      (values.name ||
+      values.email) &&
       (user.name !== values.name || user.email !== values.email)
     ) {
       setIsDisabled(false);
@@ -117,6 +113,7 @@ export const Profile = ({ onLogout, onUpdateUser, isLoading }) => {
                 className={`profile__submit`}
                 type="button"
                 onClick={() => setIsEditing((prev) => !prev)}
+                disabled={isLoading ? true : false}
               >
                 Редактировать
               </button>

@@ -3,7 +3,7 @@ import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useForm } from "../../hooks/useForm";
-import { EMAIL_REG } from "../../utils/constants";
+import { EMAIL_REG, MAIN_ROUT, SIGN_UP_ROUT } from "../../utils/constants";
 
 import headerImage from "./../../images/logo.svg";
 import { useEffect } from "react";
@@ -28,7 +28,7 @@ export const Login = ({ onLogin, isLoading, isLoggedIn }) => {
   return (
     <main className={`login`}>
       <div className={`login__container`}>
-        <Link className="login__link" to="/">
+        <Link className="login__link" to={MAIN_ROUT}>
           <img className="login__img" src={headerImage} alt="Логотип" />
         </Link>
         <h1 className="login__main-title">Рады видеть!</h1>
@@ -73,7 +73,7 @@ export const Login = ({ onLogin, isLoading, isLoggedIn }) => {
           </button>
           <p className="login__text">
             Ещё не зарегистрированы?{" "}
-            <Link className="login__reg-link" to={"/signup"}>
+            <Link className="login__reg-link" to={SIGN_UP_ROUT}>
               Регистрация
             </Link>
           </p>

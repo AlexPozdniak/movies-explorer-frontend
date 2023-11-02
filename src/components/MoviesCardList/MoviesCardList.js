@@ -2,7 +2,7 @@ import "./MoviesCardList.scss";
 import { MoviesCard } from "../MoviesCard/MoviesCard";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { API_URL } from "../../utils/constants";
+import { API_URL, SAVE_MOVIES_ROUT } from "../../utils/constants";
 
 export const MoviesCardList = ({
   movies,
@@ -52,7 +52,7 @@ export const MoviesCardList = ({
   };
 
   function isItemInArray(item) {
-    if (location.pathname === "/saved-movies") {
+    if (location.pathname === SAVE_MOVIES_ROUT) {
       return savedMovies.some((arrItem) => {
         return arrItem.movieId === item.movieId;
       });
@@ -91,7 +91,7 @@ export const MoviesCardList = ({
               <MoviesCard
                 key={movie.id || Math.random()}
                 url={
-                  location.pathname === "/saved-movies"
+                  location.pathname === SAVE_MOVIES_ROUT
                     ? movie.image
                     : `${API_URL}${movie.image.url}`
                 }
@@ -112,7 +112,7 @@ export const MoviesCardList = ({
               <MoviesCard
                 key={movie.id || Math.random()}
                 url={
-                  location.pathname === "/saved-movies"
+                  location.pathname === SAVE_MOVIES_ROUT
                     ? movie.image
                     : `${API_URL}${movie.image.url}`
                 }

@@ -1,4 +1,4 @@
-import { MAIN_API_URL } from "./constants";
+import { API_URL, JWT_LOCAL_KEY, MAIN_API_URL, MOVIES_ROUT, SIGN_IN_ROUT, SIGN_UP_ROUT, USER_ROUT, YOUTUBE_TRAILER_LINK } from "./constants";
 
 class MainApi {
   constructor({ url, headers }) {
@@ -14,21 +14,21 @@ class MainApi {
   }
 
   getUserInfo() {
-    return fetch(`${this._url}/users/me`, {
+    return fetch(`${this._url}${USER_ROUT}`, {
       method: "GET",
       headers: {
         ...this._headers,
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${localStorage.getItem(JWT_LOCAL_KEY)}`,
       },
     }).then(this._checkResponse);
   }
 
   updateUser(data) {
-    return fetch(`${this._url}/users/me`, {
+    return fetch(`${this._url}${USER_ROUT}`, {
       method: "PATCH",
       headers: {
         ...this._headers,
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${localStorage.getItem(JWT_LOCAL_KEY)}`,
       },
       body: JSON.stringify({
         name: data.name,
@@ -38,7 +38,7 @@ class MainApi {
   }
 
   getMovies() {
-    return fetch(`${this._url}/movies`, {
+    return fetch(`${this._url}${MOVIES_ROUT}`, {
       method: "GET",
       headers: {
         ...this._headers,
@@ -48,8 +48,7 @@ class MainApi {
   }
 
   saveMovie(data) {
-    console.log(data, 'save')
-    return fetch(`${this._url}/movies/`, {
+    return fetch(`${this._url}${MOVIES_ROUT}/`, {
       method: "POST",
       headers: {
         ...this._headers,
@@ -62,42 +61,40 @@ class MainApi {
         duration: data.duration,
         year: data.year,
         description: data.description,
-        image: `https://api.nomoreparties.co${data.image.url}`,
+        image: `${API_URL}${data.image.url}`,
         trailerLink:
           data.trailerLink ??
-          `https://www.youtube.com/results?search_query=трейлер+${data.nameRU}`,
+          `${YOUTUBE_TRAILER_LINK}${data.nameRU}`,
         nameRU: data.nameRU,
         nameEN: data.nameEN,
-        thumbnail: `https://api.nomoreparties.co${data.image.formats.thumbnail.url}`,
+        thumbnail: `${API_URL}${data.image.formats.thumbnail.url}`,
         
       }),
     }).then(this._checkResponse);
   }
 
   register(name, email, password) {
-    console.log(name, email,password, 'newuser')
-    return fetch(`${this._url}/signup`, {
+    return fetch(`${this._url}${SIGN_UP_ROUT}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(name, email, password),
+      body: JSON.stringify({name, email, password}),
     }).then(this._checkResponse);
   }
   
   login(email, password) {
-    console.log(email, password, 'fets')
-    return fetch(`${this._url}/signin`, {
+    return fetch(`${this._url}${SIGN_IN_ROUT}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(email, password),
+      body: JSON.stringify({email, password}),
     }).then(this._checkResponse);
   }
   
   check(jwt) {
-    return fetch(`${this._url}/users/me`, {
+    return fetch(`${this._url}${USER_ROUT}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -107,11 +104,11 @@ class MainApi {
   }
 
   removeMovie(movieId) {
-    return fetch(`${this._url}/movies/${movieId}`, {
+    return fetch(`${this._url}${MOVIES_ROUT}/${movieId}`, {
       method: "DELETE",
       headers: {
         ...this._headers,
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${localStorage.getItem(JWT_LOCAL_KEY)}`,
       },
     }).then(this._checkResponse);
   }

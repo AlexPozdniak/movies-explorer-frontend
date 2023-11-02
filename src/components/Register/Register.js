@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 
 import headerImg from "./../../images/logo.svg";
-import { EMAIL_REG } from "../../utils/constants";
+import { EMAIL_REG, MAIN_ROUT, SIGN_IN_ROUT } from "../../utils/constants";
 
 export const Register = ({ onRegister, isLoading, isLoggedIn }) => {
   const { values, handleChange, errors, isValid } = useForm({});
@@ -14,20 +14,21 @@ export const Register = ({ onRegister, isLoading, isLoggedIn }) => {
   function handleSubmit(evt) {
     evt.preventDefault();
     if (isValid) {
+      console.log(values, 'values')
       onRegister(values);
     }
   }
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/", { replace: true });
+      navigate(MAIN_ROUT, { replace: true });
     }
   });
 
   return (
     <main className={`reg`}>
       <div className={`reg__container`}>
-        <Link className="header__link" to="/">
+        <Link className="header__link" to={MAIN_ROUT}>
           <img className="login__logo" src={headerImg} alt="Логотип" />
         </Link>
         <h1 className="reg__title">Добро пожаловать!</h1>
@@ -78,7 +79,7 @@ export const Register = ({ onRegister, isLoading, isLoggedIn }) => {
           </button>
           <p className="reg__question">
             Уже зарегистрированы?{" "}
-            <Link className="reg__signin" to={"/signin"}>
+            <Link className="reg__signin" to={SIGN_IN_ROUT}>
               Войти
             </Link>
           </p>

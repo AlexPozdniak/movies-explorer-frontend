@@ -7,6 +7,7 @@ import { Navigation } from "../Navigation/Navigation";
 import useResize from "../../hooks/useResize";
 import headerImg from "./../../images/logo.svg";
 import accountImg from "./../../images/account.svg";
+import { MAIN_ROUT, PROFILE_ROUT, SIGN_IN_ROUT, SIGN_UP_ROUT } from "../../utils/constants";
 
 const Header = ({ isLoggedIn, onOpenBurger }) => {
   const large = useResize();
@@ -14,25 +15,25 @@ const Header = ({ isLoggedIn, onOpenBurger }) => {
   if (large) {
     return (
       <header
-        className={`header ${location.pathname !== "/" && "header_alter"}`}
+        className={`header ${location.pathname !== MAIN_ROUT && "header_alter"}`}
       >
         <div className="header__container">
-          <Link className="header__link" to="/">
+          <Link className="header__link" to={MAIN_ROUT}>
             <img className="header__img" src={headerImg} alt="Логотип" />
           </Link>
           {isLoggedIn ? (
             <>
               <Navigation />
               <Link
-                to="/profile"
+                to={PROFILE_ROUT}
                 className={`header__account ${
-                  location.pathname !== "/" && "header__account_alter"
+                  location.pathname !== MAIN_ROUT && "header__account_alter"
                 }`}
               >
                 Аккаунт
                 <div
                   className={`header__account-wrapper ${
-                    location.pathname !== "/" && "header__account-wrapper_alter"
+                    location.pathname !== MAIN_ROUT && "header__account-wrapper_alter"
                   }`}
                 >
                   <img
@@ -45,10 +46,10 @@ const Header = ({ isLoggedIn, onOpenBurger }) => {
             </>
           ) : (
             <nav className="header__nav-menu">
-              <Link className="header__register" to="/signup">
+              <Link className="header__register" to={SIGN_UP_ROUT}>
                 Регистрация
               </Link>
-              <Link className="header__account-btn" to="/signin">
+              <Link className="header__account-btn" to={SIGN_IN_ROUT}>
                 <div className="header__login">Войти</div>
               </Link>
             </nav>
@@ -58,9 +59,9 @@ const Header = ({ isLoggedIn, onOpenBurger }) => {
     );
   }
   return (
-    <header className={`header ${location.pathname !== "/" && "header_alter"}`}>
+    <header className={`header ${location.pathname !== MAIN_ROUT && "header_alter"}`}>
       <div className="header__container">
-        <Link className="header__link" to="/">
+        <Link className="header__link" to={MAIN_ROUT}>
           <img className="header__img" src={headerImg} alt="Логотип" />
         </Link>
         {isLoggedIn ? (
@@ -68,17 +69,17 @@ const Header = ({ isLoggedIn, onOpenBurger }) => {
             <button
               type="button"
               className={`header__burger-icon ${
-                location.pathname === "/" && "header__burger-icon_white"
+                location.pathname === MAIN_ROUT && "header__burger-icon_white"
               }`}
               onClick={onOpenBurger}
             ></button>
           </>
         ) : (
           <div className="header__nav-menu">
-            <Link className="header__register" to="/signup">
+            <Link className="header__register" to={SIGN_UP_ROUT}>
               Регистрация
             </Link>
-            <Link className="header__account-btn" to="/signin">
+            <Link className="header__account-btn" to={SIGN_IN_ROUT}>
               <div className="header__login">Войти</div>
             </Link>
           </div>

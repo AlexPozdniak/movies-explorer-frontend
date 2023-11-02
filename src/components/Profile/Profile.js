@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { useForm } from "../../hooks/useForm";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
-import { EMAIL_REG } from "../../utils/constants";
+import { EMAIL_REG, MAIN_ROUT } from "../../utils/constants";
 
 export const Profile = ({ onLogout, onUpdateUser, isLoading }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -15,7 +15,6 @@ export const Profile = ({ onLogout, onUpdateUser, isLoading }) => {
     email: user.email,
   });
   const [isDisabled, setIsDisabled] = useState(true);
-  console.log(isLoading)
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   useEffect(() => {
@@ -118,7 +117,7 @@ export const Profile = ({ onLogout, onUpdateUser, isLoading }) => {
                 Редактировать
               </button>
             )}
-            <Link className="profile__exit" to={"/"} onClick={() => onLogout()}>
+            <Link className="profile__exit" to={MAIN_ROUT} onClick={() => onLogout()}>
               Выйти из аккаунта
             </Link>
           </div>

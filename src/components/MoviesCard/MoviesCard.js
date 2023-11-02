@@ -1,3 +1,4 @@
+import { MOVIES_ROUT, SAVE_MOVIES_ROUT, WRONG_FORMAT_ERROR_MSG } from "../../utils/constants";
 import "./MoviesCard.scss";
 
 import { useLocation } from "react-router-dom";
@@ -15,7 +16,7 @@ export const MoviesCard = ({
   const location = useLocation();
   const handleLikeClick = () => {
     if (isLiked) {
-      if (location.pathname === "/movies") {
+      if (location.pathname === MOVIES_ROUT) {
         onDislike({ _id });
       } else {
         movie.movieId = movie.id;
@@ -29,7 +30,7 @@ export const MoviesCard = ({
     const number = parseInt(input, 10);
 
     if (isNaN(number)) {
-      return "Некорректный формат";
+      return WRONG_FORMAT_ERROR_MSG;
     }
     const hours = Math.floor(number / 60);
     const minutes = number % 60;
@@ -42,7 +43,7 @@ export const MoviesCard = ({
       <div className="card__naming">
         <h2 className="card__name">{title}</h2>
         <div className="card__like">
-          {location.pathname === "/movies" && (
+          {location.pathname === MOVIES_ROUT && (
             <button
               type="button"
               className={`card__like-button ${
@@ -51,7 +52,7 @@ export const MoviesCard = ({
               onClick={handleLikeClick}
             ></button>
           )}
-          {location.pathname === "/saved-movies" && (
+          {location.pathname === SAVE_MOVIES_ROUT && (
             <button
               type="button"
               className={`card__like-button ${

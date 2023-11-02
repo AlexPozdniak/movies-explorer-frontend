@@ -20,10 +20,11 @@ import mainApi from "../../utils/MainApi";
 
 import { useMemo } from "react";
 import InfoPopup from "../InfoPopup/InfoPopup";
+import { ERROR_ROUT, JWT_LOCAL_KEY, MAIN_ROUT, MOVIES_ROUT, PROFILE_ROUT, SAVE_MOVIES_ROUT, SIGN_IN_ROUT, SIGN_UP_ROUT } from "../../utils/constants";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("jwt") ? true : false
+    localStorage.getItem(JWT_LOCAL_KEY) ? true : false
   );
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -63,16 +64,17 @@ const App = () => {
       });
   };
 
-  const login = (email, password) => {
+  const login = ({email, password}) => {
     setIsLoading(true);
     return mainApi
       .login(email, password)
       .then((res) => {
         if (res.token) {
-          localStorage.setItem("jwt", res.token);
+          localStorage.setItem(JWT_LOCAL_KEY, res.token);
           setIsLoggedIn(true);
           setIsSuccessful(true);
-          navigate("/movies");
+          checkToken();
+          navigate(MOVIES_ROUT);
         }
         return res;
       })
@@ -86,13 +88,13 @@ const App = () => {
       });
   };
 
-  const register = (name, email, password) => {
+  const register = ({name, email, password}) => {
     setIsLoading(true);
     return mainApi
       .register(name, email, password)
-      .then(() => {
+      .then((res) => {
         setIsSuccessful(true);
-        navigate("/signin");
+        login({email, password});
       })
       .catch((err) => {
         console.log(err);
@@ -105,7 +107,7 @@ const App = () => {
   };
 
   const checkToken = () => {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem(JWT_LOCAL_KEY);
     if (jwt) {
       setIsLoading(true);
       return mainApi
@@ -198,7 +200,7 @@ const App = () => {
       <div className="App">
         <Routes>
           <Route
-            path="/"
+            path={MAIN_ROUT}
             element={
               <>
                 <Header isLoggedIn={isLoggedIn} onOpenBurger={onOpenBurger} />
@@ -208,9 +210,9 @@ const App = () => {
             }
           ></Route>
           <Route
-            path="/movies"
+            path={MOVIES_ROUT}
             element={
-              <ProtectedRoute isLoggedIn={isLoggedIn} redirect={"/"}>
+              <ProtectedRoute isLoggedIn={isLoggedIn} redirect={MAIN_ROUT}>
                 <Header isLoggedIn={isLoggedIn} onOpenBurger={onOpenBurger} />
                 <Movies
                   movies={movies}
@@ -224,9 +226,9 @@ const App = () => {
             }
           ></Route>
           <Route
-            path="/saved-movies"
+            path={SAVE_MOVIES_ROUT}
             element={
-              <ProtectedRoute isLoggedIn={isLoggedIn} redirect={"/"}>
+              <ProtectedRoute isLoggedIn={isLoggedIn} redirect={MAIN_ROUT}>
                 <Header isLoggedIn={isLoggedIn} onOpenBurger={onOpenBurger} />
                 <SavedMovies
                   movies={savedMovies}
@@ -240,9 +242,9 @@ const App = () => {
             }
           ></Route>
           <Route
-            path="/profile"
+            path={PROFILE_ROUT}
             element={
-              <ProtectedRoute isLoggedIn={isLoggedIn} redirect={"/"}>
+              <ProtectedRoute isLoggedIn={isLoggedIn} redirect={MAIN_ROUT}>
                 <Header isLoggedIn={isLoggedIn} onOpenBurger={onOpenBurger} />
                 <Profile
                   onLogout={logout}
@@ -253,7 +255,7 @@ const App = () => {
             }
           ></Route>
           <Route
-            path="/signup"
+            path={SIGN_UP_ROUT}
             element={
               <Register
                 onRegister={register}
@@ -263,10 +265,10 @@ const App = () => {
             }
           ></Route>
           <Route
-            path="/signin"
+            path={SIGN_IN_ROUT}
             element={<Login onLogin={login} isLoading={isLoading} isLoggedIn={isLoggedIn}/>}
           ></Route>
-          <Route path="*" element={<EmptyPage />}></Route>
+          <Route path={ERROR_ROUT} element={<EmptyPage />}></Route>
         </Routes>
         {isBurgerOpen && <Sidebar closeMenu={setIsBurgerOpen} />}
         <InfoPopup

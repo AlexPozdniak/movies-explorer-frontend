@@ -1,3 +1,4 @@
+import { CHECKBOX_LOCAL_KEY, MOVIES_ROUT } from "../../utils/constants";
 import "./FilterCheckbox.scss";
 
 import { useLocation } from "react-router-dom";
@@ -6,8 +7,8 @@ export const FilterCheckbox = ({ isShorts, setIsShorts }) => {
   const location = useLocation();
   const handleCheckboxChange = () => {
     setIsShorts((prev) => !prev);
-    if (location.pathname === "/movies") {
-      localStorage.setItem("checked", !isShorts);
+    if (location.pathname === MOVIES_ROUT) {
+      localStorage.setItem(CHECKBOX_LOCAL_KEY, !isShorts);
     }
   };
   return (

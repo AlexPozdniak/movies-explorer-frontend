@@ -4,7 +4,7 @@ import { SearchForm } from "../SearchForm/SearchForm";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import { ERROR_MSG_KEY_WORD, ERROR_MSG_NOT_FOUND } from "../../utils/constants";
+import { ERROR_MSG_KEY_WORD, ERROR_MSG_NOT_FOUND, FILTERED_MOVIES_LOCAL_KEY, FILTERED_SAVE_MOVIES_LOCAL_KEY, FILTERED_SAVE_SHORTS_LOCAL_KEY, FILTERED_SHORTS_LOCAL_KEY, MOVIES_ROUT, QUERRY_LOCAL_KEY } from "../../utils/constants";
 
 export const SavedMovies = ({
   movies,
@@ -14,10 +14,10 @@ export const SavedMovies = ({
   onLike,
 }) => {
   const [filteredMovies, setFilteredMovies] = useState(
-    JSON.parse(localStorage.getItem("filteredSaveMovies")) || movies
+    JSON.parse(localStorage.getItem(FILTERED_SAVE_MOVIES_LOCAL_KEY)) || movies
   );
   const [filteredShorts, setFilteredShorts] = useState(
-    JSON.parse(localStorage.getItem("filteredSaveShorts")) || shortMovies
+    JSON.parse(localStorage.getItem(FILTERED_SAVE_SHORTS_LOCAL_KEY)) || shortMovies
   );
   const [error, setError] = useState(false);
   const [errorText, setErrorText] = useState("");
@@ -25,17 +25,17 @@ export const SavedMovies = ({
   const location = useLocation();
 
   useEffect(() => {
-    if (localStorage.getItem("query") || "") {
+    if (localStorage.getItem(QUERRY_LOCAL_KEY) || "") {
       if (isShorts) {
         setFilteredMovies(
           filterMoviesByQuerry(
             savedMovies.filter((film) => film.duration <= 40),
-            localStorage.getItem("query") || ""
+            localStorage.getItem(QUERRY_LOCAL_KEY) || ""
           )
         );
       } else {
         setFilteredMovies(
-          filterMoviesByQuerry(savedMovies, localStorage.getItem("query") || "")
+          filterMoviesByQuerry(savedMovies, localStorage.getItem(QUERRY_LOCAL_KEY) || "")
         );
       }
     } else {
@@ -45,17 +45,17 @@ export const SavedMovies = ({
         setFilteredMovies(savedMovies);
       }
     }
-    if (localStorage.getItem("query") || "") {
+    if (localStorage.getItem(QUERRY_LOCAL_KEY) || "") {
       if (isShorts) {
         setFilteredShorts(
           filterMoviesByQuerry(
             savedMovies.filter((film) => film.duration <= 40),
-            localStorage.getItem("query") || ""
+            localStorage.getItem(QUERRY_LOCAL_KEY) || ""
           )
         );
       } else {
         setFilteredShorts(
-          filterMoviesByQuerry(savedMovies, localStorage.getItem("query") || "")
+          filterMoviesByQuerry(savedMovies, localStorage.getItem(QUERRY_LOCAL_KEY) || "")
         );
       }
     } else {
@@ -65,7 +65,7 @@ export const SavedMovies = ({
         setFilteredShorts(savedMovies);
       }
     }
-  }, [savedMovies, isShorts, localStorage.getItem("query")]);
+  }, [savedMovies, isShorts, localStorage.getItem(QUERRY_LOCAL_KEY)]);
 
   function filterMoviesByQuerry(movies, query) {
     if (!query) {
@@ -90,26 +90,26 @@ export const SavedMovies = ({
   }
 
   function handleSearch(query) {
-    if (location.pathname === "/movies") {
+    if (location.pathname === MOVIES_ROUT) {
       setFilteredMovies(filterMoviesByQuerry(movies, query));
       localStorage.setItem(
-        "filteredMovies",
+        FILTERED_MOVIES_LOCAL_KEY,
         JSON.stringify(filterMoviesByQuerry(movies, query))
       );
       setFilteredShorts(filterMoviesByQuerry(shortMovies, query));
       localStorage.setItem(
-        "filteredShorts",
+        FILTERED_SHORTS_LOCAL_KEY,
         JSON.stringify(filterMoviesByQuerry(shortMovies, query))
       );
     } else {
       setFilteredMovies(filterMoviesByQuerry(movies, query));
       localStorage.setItem(
-        "filteredSavedMovies",
+        FILTERED_SAVE_MOVIES_LOCAL_KEY,
         JSON.stringify(filterMoviesByQuerry(movies, query))
       );
       setFilteredShorts(filterMoviesByQuerry(shortMovies, query));
       localStorage.setItem(
-        "filteredSavedShorts",
+        FILTERED_SAVE_SHORTS_LOCAL_KEY,
         JSON.stringify(filterMoviesByQuerry(shortMovies, query))
       );
     }

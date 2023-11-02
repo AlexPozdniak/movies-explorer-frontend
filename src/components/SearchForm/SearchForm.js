@@ -3,9 +3,10 @@ import "./SearchForm.scss";
 import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 
 import { useState } from "react";
+import { QUERRY_LOCAL_KEY } from "../../utils/constants";
 
 export const SearchForm = ({ onSearch, isShorts, setIsShorts, errorText, error }) => {
-  const [query, setQuery] = useState(localStorage.getItem("query") || "");
+  const [query, setQuery] = useState(localStorage.getItem(QUERRY_LOCAL_KEY) || "");
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(query);
@@ -19,7 +20,7 @@ export const SearchForm = ({ onSearch, isShorts, setIsShorts, errorText, error }
             <input
               onChange={(e) => {
                 setQuery(e.target.value);
-                localStorage.setItem("query", e.target.value);
+                localStorage.setItem(QUERRY_LOCAL_KEY, e.target.value);
               }}
               className="search__input"
               placeholder="Фильм"

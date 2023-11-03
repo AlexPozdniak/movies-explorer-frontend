@@ -14,7 +14,6 @@ export const Register = ({ onRegister, isLoading, isLoggedIn }) => {
   function handleSubmit(evt) {
     evt.preventDefault();
     if (isValid) {
-      console.log(values, 'values')
       onRegister(values);
     }
   }

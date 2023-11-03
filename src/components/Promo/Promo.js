@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "./Promo.scss";
 import wordslogo from "../../images/main-image.svg";
 import useMediaQueries from "../../hooks/useResize.js";

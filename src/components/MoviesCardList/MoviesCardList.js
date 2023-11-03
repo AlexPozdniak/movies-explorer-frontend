@@ -1,188 +1,138 @@
 import "./MoviesCardList.scss";
-
 import { MoviesCard } from "../MoviesCard/MoviesCard";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { API_URL, SAVE_MOVIES_ROUT } from "../../utils/constants";
 
-import pg from "../../images/pg.png";
-import banksy from "../../images/banksy.png";
-import war from "../../images/war.png";
+export const MoviesCardList = ({
+  movies,
+  shortMovies,
+  isShorts,
+  onLike,
+  onDislike,
+  savedMovies,
+}) => {
+  const location = useLocation();
+  const [showMore, setShowMore] = useState(true);
+  const [cardsCount, setCardsCount] = useState(
+    getCardsPerRow() * getStartRowCount()
+  );
+  useEffect(() => {
+    if (isShorts) {
+      if (shortMovies.length < cardsCount) {
+        setShowMore(false);
+      } else {
+        setShowMore(true);
+      }
+    } else {
+      if (movies.length < cardsCount) {
+        setShowMore(false);
+      } else {
+        setShowMore(true);
+      }
+    }
+  }, [cardsCount, movies, shortMovies, isShorts]);
 
-export const MoviesCardList = () => {
-  const movies = [
-    {
-      url: pg,
-      title: "Пи Джей Харви: A dog called money",
-      duration: "1ч42м",
-      isLiked: true,
-      id: Math.random(),
-    },
+  const handleShowMore = () => {
+    setCardsCount((prev) => prev + getCardsPerRow());
 
-    {
-      url: banksy,
-      title: "В погоне за Бенкси",
-      duration: "1ч42м",
-      isLiked: false,
-      id: Math.random(),
-    },
+    if (isShorts) {
+      if (shortMovies.length < cardsCount) {
+        setShowMore(false);
+      } else {
+        setShowMore(true);
+      }
+    } else {
+      if (movies.length < cardsCount) {
+        setShowMore(false);
+      } else {
+        setShowMore(true);
+      }
+    }
+  };
 
-    {
-      url: war,
-      title: "Война искусств",
-      duration: "1ч42м",
-      isLiked: true,
-      id: Math.random(),
-    },
+  function isItemInArray(item) {
+    if (location.pathname === SAVE_MOVIES_ROUT) {
+      return savedMovies.some((arrItem) => {
+        return arrItem.movieId === item.movieId;
+      });
+    } else {
+      return savedMovies.some((arrItem) => {
+        return arrItem.movieId === item.id;
+      });
+    }
+  }
+  function getSavedMovieId(savedMovies, id) {
+    const savedMovie = savedMovies.find((item) => item.movieId === id);
+    return savedMovie ? savedMovie._id : null;
+  }
 
-    {
-      url: pg,
-      title: "Пи Джей Харви: A dog called money",
-      duration: "1ч42м",
-      isLiked: false,
-      id: Math.random(),
-    },
+  function getCardsPerRow() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth >= 768) return 4;
+    if (screenWidth >= 480) return 2;
+    return 1;
+  }
 
-    {
-      url: banksy,
-      title: "В погоне за Бенкси",
-      duration: "1ч42м",
-      isLiked: true,
-      id: Math.random(),
-    },
-
-    {
-      url: war,
-      title: "Война искусств",
-      duration: "1ч42м",
-      isLiked: false,
-      id: Math.random(),
-    },
-
-    {
-      url: pg,
-      title: "Пи Джей Харви: A dog called money",
-      duration: "1ч42м",
-      isLiked: true,
-      id: Math.random(),
-    },
-
-    {
-      url: banksy,
-      title: "В погоне за Бенкси",
-      duration: "1ч42м",
-      isLiked: false,
-      id: Math.random(),
-    },
-
-    {
-      url: war,
-      title: "Война искусств",
-      duration: "1ч42м",
-      isLiked: true,
-      id: Math.random(),
-    },
-
-    {
-      url: pg,
-      title: "Пи Джей Харви: A dog called money",
-      duration: "1ч42м",
-      isLiked: false,
-      id: Math.random(),
-    },
-
-    {
-      url: banksy,
-      title: "В погоне за Бенкси",
-      duration: "1ч42м",
-      isLiked: true,
-      id: Math.random(),
-    },
-
-    {
-      url: war,
-      title: "Война искусств",
-      duration: "1ч42м",
-      isLiked: false,
-      id: Math.random(),
-    },
-
-    {
-      url: pg,
-      title: "Пи Джей Харви: A dog called money",
-      duration: "1ч42м",
-      isLiked: true,
-      id: Math.random(),
-    },
-
-    {
-      url: banksy,
-      title: "В погоне за Бенкси",
-      duration: "1ч42м",
-      isLiked: false,
-      id: Math.random(),
-    },
-
-    {
-      url: war,
-      title: "Война искусств",
-      duration: "1ч42м",
-      isLiked: true,
-      id: Math.random(),
-    },
-
-    {
-      url: pg,
-      title: "Пи Джей Харви: A dog called money",
-      duration: "1ч42м",
-      isLiked: false,
-      id: Math.random(),
-    },
-
-    {
-      url: banksy,
-      title: "В погоне за Бенкси",
-      duration: "1ч42м",
-      isLiked: true,
-      id: Math.random(),
-    },
-
-    {
-      url: war,
-      title: "Война искусств",
-      duration: "1ч42м",
-      isLiked: false,
-      id: Math.random(),
-    },
-    {
-      url: banksy,
-      title: "В погоне за Бенкси",
-      duration: "1ч42м",
-      isLiked: true,
-      id: Math.random(),
-    },
-
-    {
-      url: war,
-      title: "Война искусств",
-      duration: "1ч42м",
-      isLiked: false,
-      id: Math.random(),
-    },
-  ];
+  function getStartRowCount() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth >= 768) return 4;
+    if (screenWidth >= 480) return 8;
+    return 5;
+  }
 
   return (
     <section className="movies-items">
       <ul className="movies-items__container">
-        {movies.map((movie) => (
-          <MoviesCard
-            key={movie.id}
-            url={movie.url}
-            title={movie.title}
-            duration={movie.duration}
-            isLiked={movie.isLiked}
-          />
-        ))}
+        {!isShorts &&
+          movies
+            .slice(0, cardsCount)
+            .map((movie) => (
+              <MoviesCard
+                key={movie.id || Math.random()}
+                url={
+                  location.pathname === SAVE_MOVIES_ROUT
+                    ? movie.image
+                    : `${API_URL}${movie.image.url}`
+                }
+                title={movie.nameRU}
+                duration={movie.duration}
+                isLiked={isItemInArray(movie)}
+                trailerLink={movie.trailerLink}
+                onLike={onLike}
+                onDislike={onDislike}
+                movie={movie}
+                _id={getSavedMovieId(savedMovies, movie.id)}
+              />
+            ))}
+        {isShorts &&
+          shortMovies
+            .slice(0, cardsCount)
+            .map((movie, idx, arr) => (
+              <MoviesCard
+                key={movie.id || Math.random()}
+                url={
+                  location.pathname === SAVE_MOVIES_ROUT
+                    ? movie.image
+                    : `${API_URL}${movie.image.url}`
+                }
+                title={movie.nameRU}
+                duration={movie.duration}
+                isLiked={isItemInArray(movie)}
+                trailerLink={movie.trailerLink}
+                onLike={onLike}
+                onDislike={onDislike}
+                movie={movie}
+                _id={getSavedMovieId(savedMovies, movie.id)}
+              />
+            ))}
       </ul>
-      {movies.length && (
-        <button type="button" className="movies-items__more">
+      {showMore && (
+        <button
+          type="button"
+          className="movies-items__more"
+          onClick={handleShowMore}
+        >
           Ещё
         </button>
       )}

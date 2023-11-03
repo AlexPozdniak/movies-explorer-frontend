@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import "./Navigation.scss";
+import { MAIN_ROUT, MOVIES_ROUT, SAVE_MOVIES_ROUT } from "../../utils/constants";
 
 export const Navigation = () => {
   const location = useLocation();
@@ -7,19 +8,19 @@ export const Navigation = () => {
     <nav className="navigation">
       <Link
         className={`navigation__link ${
-          location.pathname !== "/" && "navigation__link_colored"
-        } ${location.pathname === "/movies" && "navigation__link_active"}`}
+          location.pathname !== MAIN_ROUT && "navigation__link_colored"
+        } ${location.pathname === MOVIES_ROUT && "navigation__link_active"}`}
         to="/movies"
       >
         Фильмы
       </Link>
       <Link
         className={`navigation__link ${
-          location.pathname !== "/" && "navigation__link_colored"
+          location.pathname !== MAIN_ROUT && "navigation__link_colored"
         } ${
-          location.pathname === "/saved-movies" && "navigation__link_active"
+          location.pathname === SAVE_MOVIES_ROUT && "navigation__link_active"
         }`}
-        to="/saved-movies"
+        to={SAVE_MOVIES_ROUT}
       >
         Сохраненные фильмы
       </Link>

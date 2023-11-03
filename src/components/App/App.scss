@@ -1,8 +1,10 @@
 @import "../../utils/variables";
 
 .App {
-  @include flexcenter;
+  display: flex;
+  align-items: center;
   width: 100%;
   flex-direction: column;
   background-color: #fff;
+  min-height: 100vh;
 }

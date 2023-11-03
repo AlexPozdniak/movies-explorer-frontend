@@ -1,67 +1,123 @@
 import "./Profile.scss";
 
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
+import { useForm } from "../../hooks/useForm";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { EMAIL_REG, MAIN_ROUT } from "../../utils/constants";
 
-export const Profile = () => {
-
-  const [nameError, setNameError] = useState(true);
-  const [name, setName] = useState('Виталий');
-  const [email, setEmail] = useState('pochta@yandex.ru');
-  const [emailError, setEmailError] = useState(true);
-
-  function handleName(e) {
-    setNameError(e.target.validity.valid)
-    setName(e.target.value)
+export const Profile = ({ onLogout, onUpdateUser, isLoading }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const user = useContext(CurrentUserContext);
+  const { values, handleChange, errors, isValid } = useForm({
+    name: user.name,
+    email: user.email,
+  });
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
+  useEffect(() => {
+    setName(user.name);
+    setEmail(user.email);
+  }, [user]);
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name = values.name || user.name;
+    const email = values.email || user.email;
+    onUpdateUser({ name, email });
+    setIsEditing(false);
   }
 
-  function handleEmail(e) {
-    setEmailError(e.target.validity.valid)
-    setEmail(e.target.value)
-  }
+  useEffect(() => {
+    if (
+      (values.name ||
+      values.email) &&
+      (user.name !== values.name || user.email !== values.email)
+    ) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [values, user]);
+
   return (
     <main className={`profile`}>
       <section className={`profile__container`}>
-        <h1 className="profile__title">Привет, Виталий!</h1>
-        <form className="profile__form" name={"form"}>
+        <h1 className="profile__title">Привет, {user.name}!</h1>
+        <form className="profile__form" name={"form"} onSubmit={handleSubmit}>
           <fieldset className="profile__inputs">
             <div className="profile__inputs-container">
               <label className="profile__input-name">Имя</label>
               <input
                 className={`profile__input ${
-                  !nameError && "profile__input-error_active"
+                  !isValid &&
+                  values["name"] &&
+                  isEditing &&
+                  "profile__input-error_active"
                 }`}
                 name="name"
                 type="text"
                 required
                 minLength="2"
-                maxLength="200"
-                onChange= {handleName}
-                value={ name }
+                maxLength="20"
+                onChange={handleChange}
+                value={isEditing ? values["name"] : name}
+                disabled={!isEditing}
               />
             </div>
             <div className="profile__inputs-container">
               <label className="profile__input-name">E-mail</label>
               <input
                 className={`profile__input ${
-                  !emailError && "profile__input-error_active"
+                  !isValid &&
+                  values["email"] &&
+                  isEditing &&
+                  "profile__input-error_active"
                 }`}
                 name="email"
                 type="email"
                 required
                 minLength="2"
                 maxLength="40"
-                onChange={handleEmail}
-                value={email}
+                onChange={handleChange}
+                value={isEditing ? values["email"] : email}
+                pattern={EMAIL_REG}
+                disabled={!isEditing}
               />
             </div>
           </fieldset>
           <div className="profile__buttons">
-            <button className={`profile__submit`} type="button">
-              Редактировать
-            </button>
-            <Link className="profile__exit" to={"/"}>
+            {isEditing && (
+              <>
+                <button
+                  className={`profile__submit ${
+                    !isValid || isDisabled ? "profile__submit_disabled" : ""
+                  }`}
+                  type="submit"
+                  disabled={isLoading ? true : !isValid || isDisabled}
+                >
+                  Сохранить
+                </button>
+                <span className="profile__input-error profile__input-error_active-bottom">
+                  {errors.name}
+                </span>
+                <span className="profile__input-error profile__input-error_active-bottom">
+                  {errors.email}
+                </span>
+              </>
+            )}
+            {!isEditing && (
+              <button
+                className={`profile__submit`}
+                type="button"
+                onClick={() => setIsEditing((prev) => !prev)}
+                disabled={isLoading ? true : false}
+              >
+                Редактировать
+              </button>
+            )}
+            <Link className="profile__exit" to={MAIN_ROUT} onClick={() => onLogout()}>
               Выйти из аккаунта
             </Link>
           </div>

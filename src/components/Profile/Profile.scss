@@ -75,7 +75,6 @@
     }
   }
   &__input-error {
-    height: 24px;
     margin-bottom: 24px;
     color: #ffffff;
     font-family: Inter, sans-serif;
@@ -83,12 +82,14 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    &:last-of-type {
-      margin-bottom: 0px;
-    }
   }
   &__input-error_active {
     color: #ff3055;
+  }
+  &__input-error_active-bottom {
+    color: #ff3055;
+    text-align: center;
+    margin: 4px;
   }
   &__buttons {
     display: flex;
@@ -107,11 +108,13 @@
     font-weight: 400;
     line-height: normal;
     margin-top: 202px;
-    margin-bottom: 16px;
     &:hover {
       border-radius: 3px;
       background: #e9eaf0;
       @include forhover;
+    }
+    &_disabled {
+      opacity: 0.5;
     }
   }
   &__exit {

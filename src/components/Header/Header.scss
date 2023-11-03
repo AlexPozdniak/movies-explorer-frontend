@@ -73,6 +73,9 @@
     font-weight: 400;
     line-height: 18px;
     text-decoration: none;
+    &:hover {
+      @include forhover;
+    }
   }
   &__login {
     @include flexcenter;
@@ -92,6 +95,10 @@
     height: 32px;
     border-radius: 3px;
     background: #2be080;
+    text-decoration: none;
+    &:hover {
+      @include forhover;
+    }
   }
   &__burger-icon {
     width: 40px;

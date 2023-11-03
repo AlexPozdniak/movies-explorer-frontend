@@ -1,3 +1,4 @@
+import { AUTHOR_GITHUB_LINK, PRACTICUM_LINK } from "../../utils/constants";
 import "./Footer.scss";
 
 import { Link } from "react-router-dom";
@@ -16,7 +17,7 @@ export const Footer = () => {
               className="footer__link"
               target="_blank"
               rel="noopener noreferrer"
-              to="https://practicum.yandex.ru"
+              to={PRACTICUM_LINK}
             >
               Яндекс.Практикум
             </Link>
@@ -24,7 +25,7 @@ export const Footer = () => {
               className="footer__link"
               target="_blank"
               rel="noopener noreferrer"
-              to="https://github.com/davidlovepie"
+              to={AUTHOR_GITHUB_LINK}
             >
               Github
             </Link>

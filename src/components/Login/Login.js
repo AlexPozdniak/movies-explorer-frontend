@@ -1,84 +1,79 @@
 import "./Login.scss";
 
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useForm } from "../../hooks/useForm";
+import { EMAIL_REG, MAIN_ROUT, SIGN_UP_ROUT } from "../../utils/constants";
 
 import headerImage from "./../../images/logo.svg";
+import { useEffect } from "react";
 
-export const Login = () => {
-  const [email, setEmail] = useState('');
-  const [isEmailValid, setIsEmailValid] = useState(true);
-  const [password, setPassword] = useState('');
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
+export const Login = ({ onLogin, isLoading, isLoggedIn }) => {
+  const { values, handleChange, errors, isValid } = useForm({});
+  const navigate = useNavigate();
 
-  const handleEmail = (e) => {
-    setIsEmailValid(e.target.validity.valid);
-    setEmail(e.target.value);
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    if (isValid) {
+      onLogin(values);
+    }
   }
-  const handlePassword = (e) => {
-    setIsPasswordValid(e.target.validity.valid);
-    setPassword(e.target.value);
-  }
-  
+
+  useEffect(  () => {
+    if (isLoggedIn) {
+      navigate("/", { replace: true });
+    }
+  })
+
   return (
     <main className={`login`}>
       <div className={`login__container`}>
-        <Link className="login__link" to="/">
+        <Link className="login__link" to={MAIN_ROUT}>
           <img className="login__img" src={headerImage} alt="Логотип" />
         </Link>
-
         <h1 className="login__main-title">Рады видеть!</h1>
-        <form className="login__signin-form" name={"form"}>
+        <form
+          className="login__signin-form"
+          name={"form"}
+          onSubmit={handleSubmit}
+        >
           <fieldset className="login__inputs">
             <label className="login__lable">E-mail</label>
             <input
-              className={`login__input ${
-                !isEmailValid && "login__input_error-active"
-              }`}
+              className={`login__input`}
               name="email"
               type="email"
               required
               minLength="2"
               maxLength="40"
-              onChange={handleEmail}
-              // placeholder="E-mail"
-              value={email || ""}
+              onChange={handleChange}
+              pattern={EMAIL_REG}
             />
-            <span
-              className={`login__input-error ${
-                !isEmailValid && "login__input_error-active"
-              }`}
-            >
-              Что-то пошло не так...
-            </span>
+            <span className={`login__input-error`}>{errors["email"]}</span>
             <label className="login__lable">Пароль</label>
             <input
-              className={`login__input ${
-                !isPasswordValid && "login__input_error-active"
-              }`}
+              className={`login__input`}
               name="password"
               type="password"
               required
               minLength="2"
               maxLength="200"
-              onChange={handlePassword}
-              // placeholder="Пароль"
-              value={password || ""}
+              onChange={handleChange}
             />
-            <span
-              className={`login__input-error ${
-                !isPasswordValid && "login__input_error-active"
-              }`}
-            >
-              Что-то пошло не так...
-            </span>
+            <span className={`login__input-error`}>{errors["password"]}</span>
           </fieldset>
-          <button className={`login__submit-btn`} type="submit">
+          <button
+            className={`login__submit-btn ${
+              !isValid && "login__submit-btn_disabled"
+            } ${isLoading && "login__submit-btn_disabled"}`}
+            type="submit"
+            disabled={isLoading ? true : !isValid}
+          >
             Войти
           </button>
           <p className="login__text">
             Ещё не зарегистрированы?{" "}
-            <Link className="login__reg-link" to={"/signup"}>
+            <Link className="login__reg-link" to={SIGN_UP_ROUT}>
               Регистрация
             </Link>
           </p>
